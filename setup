@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# check for tealdeer
+if ! [ -x "$(command -v tldr)" ]; then
+    echo "Error: tealdeer (tldr) needs to be installed." >&2
+    exit 1
+fi
+
+DIR=~/.config/systemd/user/
+mkdir -p ${DIR}
+cp tldr-update.service tldr-update.timer ${DIR}
+systemctl daemon-reload --user
+systemctl enable --user --now tldr-update.timer
+systemctl status --user tldr-update.timer

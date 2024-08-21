@@ -1,0 +1,7 @@
+[Unit]
+Description=Updates tealdeer cache using tldr --update
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "tldr --update"
